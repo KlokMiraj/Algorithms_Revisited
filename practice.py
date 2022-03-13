@@ -41,4 +41,19 @@ def insertion(a):
 print (insertion([9,3,5,1,6,4]))
 
 def countnumbers(a):
-  return 0
+  # algorithm to count repeated letters in a word
+
+  a=a.casefold()
+  count={}
+  for i in a:
+    if i in count:
+      count[i]+=1
+    else:
+      count[i]=1
+  for key in count:
+   if count[key] > 0:
+    print(key,count[key])
+
+    
+  
+countnumbers('Decapitationed')
