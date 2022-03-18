@@ -11,7 +11,6 @@ Function to reverse an array in python
 
 def revarr(a):
   # //function to reverse an array
-
   count=0
   reverse=[]
   n=len(a)-1
@@ -28,7 +27,7 @@ print(revarr([6,2,3,4,5,8]))
 def insertion(a):
   #program to perform insertion sort
   
-  i=2
+  #Arraysorted=[]
   for i in range(len(a)):
     key=a[i]
     j=i-1
@@ -36,9 +35,9 @@ def insertion(a):
       a[j+1]=a[j]
       j=j-1
       a[i-1]=key
-      return a
+      print(a)
 
-print (insertion([9,3,5,1,6,4]))
+insertion([9,3,5,1,6,4])
 
 def countnumbers(a):
   # algorithm to count repeated letters in a word
@@ -57,3 +56,71 @@ def countnumbers(a):
     
   
 countnumbers('Decapitationed')
+
+def countnumbers(a):
+
+    """ 
+    Function to count the pairs given an array
+    @parms number of array
+    @returns count of numbers that cant be paired 
+      """
+
+    count={}
+    pairedkey_count=list()
+    for i in a:
+      if i in count:
+        count[i]+=1
+      else:
+        count[i]=1
+    for key in count:
+     if (count[key] % 2):
+        pairedkey_count.append(key)
+
+    return len(pairedkey_count)
+
+input_array=[1,2,3,4,4,5,6,7,3,4,5,4,5]
+text='for "{}" array the count of elements that cannot be paired are {}.'
+print(text.format(input_array,countnumbers(input_array)))
+
+def door_calc(source, destination,adjacent_v):
+  adjacent_v[source].append(destination)
+  adjacent_v[destination].append(source)
+
+def searchfordoor(source,destination,vertic,predecessors,distance):
+  queue= []
+
+  visited=[False for i in range len(vertic)]
+
+  for i in v:
+
+    distance[i]=10000
+    predecessors[i]=False
+
+  visited[source]=True;
+  distance[source]=0;
+  queue.append(source)
+
+  while (len(queue) != 0):
+    u=queue[0]
+    queue.pop(0)
+
+    for i in range(len(adj[u])):
+       if (visited[adj[u][i]] == False):
+                visited[adj[u][i]] = True;
+                dist[adj[u][i]] = dist[u] + 1;
+                pred[adj[u][i]] = u;
+                queue.append(adj[u][i]);
+                if (adj[u][i] == dest):
+                    return True;
+  
+    return False;
+
+def mid(word):
+    n=len(word)
+     
+    if(int(n%2)) == 0:
+         return ''
+    else:
+            return word[n//2]
+
+print(mid('abd'))
