@@ -82,45 +82,30 @@ input_array=[1,2,3,4,4,5,6,7,3,4,5,4,5]
 text='for "{}" array the count of elements that cannot be paired are {}.'
 print(text.format(input_array,countnumbers(input_array)))
 
-def door_calc(source, destination,adjacent_v):
-  adjacent_v[source].append(destination)
-  adjacent_v[destination].append(source)
+graph={}
 
-def searchfordoor(source,destination,vertic,predecessors,distance):
-  queue= []
+def add_edge(u,v):
+  graph[u]=v
 
-  visited=[False for i in range len(vertic)]
+def SearchDoors(source):
+  visited=[False for i in graph]
 
-  for i in v:
-
-    distance[i]=10000
-    predecessors[i]=False
-
-  visited[source]=True;
-  distance[source]=0;
+  queue=[]
   queue.append(source)
 
-  while (len(queue) != 0):
-    u=queue[0]
-    queue.pop(0)
+  visited[source]=True
 
-    for i in range(len(adj[u])):
-       if (visited[adj[u][i]] == False):
-                visited[adj[u][i]] = True;
-                dist[adj[u][i]] = dist[u] + 1;
-                pred[adj[u][i]] = u;
-                queue.append(adj[u][i]);
-                if (adj[u][i] == dest):
-                    return True;
-  
-    return False;
+  while queue:
+    s=queue.pop(0)
+    print(s,end=' ')
 
-def mid(word):
-    n=len(word)
-     
-    if(int(n%2)) == 0:
-         return ''
-    else:
-            return word[n//2]
+    for i in graph:
+      if visited[i]==False:
+        queue.append(i)
+        visited[i]=True
 
-print(mid('abd'))
+doors = [[0,1], [1,2], [1,3], [2,4], [4,5], [3,4]]
+for i in doors:
+  add_edge(i[0],i[1])
+
+SearchDoors(0)
